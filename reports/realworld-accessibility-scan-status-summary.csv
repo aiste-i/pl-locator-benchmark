@@ -1,0 +1,10 @@
+appId,corpusId,family,completedScans,failedScans,skippedScans
+angular-realworld-example-app,realworld-active,css,32,0,0
+angular-realworld-example-app,realworld-active,xpath,32,0,0
+angular-realworld-example-app,realworld-active,semantic-first,32,0,0
+realworld,realworld-active,css,32,0,0
+realworld,realworld-active,xpath,32,0,0
+realworld,realworld-active,semantic-first,32,0,0
+vue3-realworld-example-app,realworld-active,css,32,0,0
+vue3-realworld-example-app,realworld-active,xpath,32,0,0
+vue3-realworld-example-app,realworld-active,semantic-first,32,0,0

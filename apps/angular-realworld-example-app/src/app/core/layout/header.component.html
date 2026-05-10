@@ -1,0 +1,97 @@
+<nav class="navbar navbar-light" data-testid="navbar">
+  <div class="container" data-testid="navbar-container">
+    <a class="navbar-brand" routerLink="/" data-testid="navbar-brand"><img src="assets/conduit-logo.svg" alt="Conduit" class="navbar-logo" data-testid="navbar-logo" /></a>
+
+    @if (authState$ | async; as authState) {
+      <!-- Show this for logged out users -->
+      @if (authState === 'unauthenticated') {
+        <ul class="nav navbar-nav pull-xs-right" data-testid="nav-list-unauthenticated">
+          <li class="nav-item" data-testid="nav-item-home">
+            <a class="nav-link" routerLink="/" data-testid="nav-link-home"> Home </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-login">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active" data-testid="nav-link-login"> Sign in </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-register">
+            <a class="nav-link nav-signup" routerLink="/register" routerLinkActive="active" data-testid="nav-link-register"> Sign up </a>
+          </li>
+        </ul>
+      }
+
+      <!-- Show this for logged in users -->
+      @if (authState === 'authenticated') {
+        <ul class="nav navbar-nav pull-xs-right" data-testid="nav-list-authenticated">
+          <li class="nav-item" data-testid="nav-item-home">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-testid="nav-link-home">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-new-post">
+            <a class="nav-link" routerLink="/editor" routerLinkActive="active" data-testid="nav-link-new-post">
+              <i class="ion-compose"></i>&nbsp;New Article
+            </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-settings">
+            <a class="nav-link" routerLink="/settings" routerLinkActive="active" data-testid="nav-link-settings">
+              <i class="ion-gear-a"></i>&nbsp;Settings
+            </a>
+          </li>
+
+          @if (currentUser$ | async; as currentUser) {
+            <li class="nav-item" data-testid="nav-item-profile">
+              <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active" data-testid="nav-link-profile">
+                <img [src]="currentUser.image | defaultImage" class="user-pic" data-testid="nav-user-pic" />
+                {{ currentUser.username }}
+              </a>
+            </li>
+          }
+        </ul>
+      }
+
+      <!-- Show this when auth is temporarily unavailable (server error) -->
+      @if (authState === 'unavailable') {
+        <ul class="nav navbar-nav pull-xs-right" data-testid="nav-list-unavailable">
+          <li class="nav-item" data-testid="nav-item-home">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-testid="nav-link-home">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-new-post">
+            <a class="nav-link" routerLink="/editor" routerLinkActive="active" data-testid="nav-link-new-post">
+              <i class="ion-compose"></i>&nbsp;New Article
+            </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-settings">
+            <a class="nav-link" routerLink="/settings" routerLinkActive="active" data-testid="nav-link-settings">
+              <i class="ion-gear-a"></i>&nbsp;Settings
+            </a>
+          </li>
+
+          <li class="nav-item" data-testid="nav-item-connecting">
+            <span class="nav-link" title="Auth unavailable - retrying automatically" data-testid="nav-connecting-span">
+              <i class="ion-load-c"></i>&nbsp;Connecting...
+            </span>
+          </li>
+        </ul>
+      }
+
+      <!-- Show this while loading auth state -->
+      @if (authState === 'loading') {
+        <ul class="nav navbar-nav pull-xs-right" data-testid="nav-list-loading">
+          <li class="nav-item" data-testid="nav-item-home">
+            <a class="nav-link" routerLink="/" data-testid="nav-link-home"> Home </a>
+          </li>
+          <li class="nav-item" data-testid="nav-item-loading">
+            <span class="nav-link" data-testid="nav-loading-span">Loading...</span>
+          </li>
+        </ul>
+      }
+    }
+  </div>
+</nav>

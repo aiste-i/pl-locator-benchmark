@@ -1,0 +1,58 @@
+<div class="auth-page" data-testid="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center" data-testid="auth-title">{{ title }}</h1>
+        <p class="text-xs-center">
+          @if (authType === 'register') {
+            <a [routerLink]="['/login']" data-testid="auth-link">Have an account?</a>
+          }
+
+          @if (authType === 'login') {
+            <a [routerLink]="['/register']" data-testid="auth-link">Need an account?</a>
+          }
+        </p>
+        <app-list-errors [errors]="errors()" data-testid="auth-error-list" />
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()" data-testid="auth-form">
+          <fieldset [disabled]="isSubmitting()" data-testid="auth-fieldset">
+            <fieldset class="form-group" data-testid="auth-username-fieldset">
+              @if (authType === 'register') {
+                <input
+                  formControlName="username"
+                  name="username"
+                  placeholder="Username"
+                  class="form-control form-control-lg"
+                  type="text"
+                  data-testid="auth-username-input"
+                />
+              }
+            </fieldset>
+            <fieldset class="form-group" data-testid="auth-email-fieldset">
+              <input
+                formControlName="email"
+                name="email"
+                placeholder="Email"
+                class="form-control form-control-lg"
+                type="text"
+                data-testid="auth-email-input"
+              />
+            </fieldset>
+            <fieldset class="form-group" data-testid="auth-password-fieldset">
+              <input
+                formControlName="password"
+                name="password"
+                placeholder="Password"
+                class="form-control form-control-lg"
+                type="password"
+                data-testid="auth-password-input"
+              />
+            </fieldset>
+            <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit" data-testid="auth-submit-button">
+              {{ title }}
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

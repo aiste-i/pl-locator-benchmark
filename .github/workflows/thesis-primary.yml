@@ -1,0 +1,92 @@
+name: Thesis Primary Chromium Dataset
+
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: Mutation budget per app
+        required: true
+        default: '10'
+      seed:
+        description: Deterministic mutation selection seed
+        required: true
+        default: '12345'
+
+jobs:
+  thesis-primary:
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_BROWSERS: chromium
+      BENCHMARK_CORPUS_ID: realworld-active
+      BENCHMARK_RETENTION: compact
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install app dependencies
+        run: npm run install:apps
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: RealWorld validation specs
+        run: npm run validate:realworld
+
+      - name: Chromium baseline corpus
+        run: npm run benchmark:baseline:primary
+
+      - name: Prepare deterministic mutation set
+        run: |
+          npm run benchmark:prepare:app --appid=angular-realworld-example-app --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+          npm run benchmark:prepare:app --appid=realworld --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+          npm run benchmark:prepare:app --appid=vue3-realworld-example-app --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+
+      - name: Chromium mutation corpus
+        run: npm run benchmark:mutate:all
+
+      - name: Validate benchmark results
+        run: npm run validate:results
+
+      - name: Aggregate reports
+        run: npm run benchmark:aggregate:all
+
+      - name: Check comparable yield
+        run: npm run benchmark:check:yield
+
+      - name: Generate run-derived reports
+        run: npm run reports:generate:run
+
+      - name: Upload thesis-primary artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-primary-chromium-budget-${{ inputs.budget }}-seed-${{ inputs.seed }}
+          path: |
+            reports/realworld-accessibility-scan-status-summary.csv
+            reports/realworld-accessibility-summary-all-valid-runs.csv
+            reports/realworld-accessibility-summary-completed-only.csv
+            reports/realworld-benchmark-corpus.json
+            reports/realworld-locator-support-matrix.json
+            reports/realworld-locator-unsupported.json
+            reports/realworld-operator-taxonomy.json
+            reports/realworld-semantic-css-exceptions.json
+            test-results/angular-realworld-example-app/realworld-active
+            test-results/realworld/realworld-active
+            test-results/vue3-realworld-example-app/realworld-active

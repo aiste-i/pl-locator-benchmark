@@ -1,0 +1,93 @@
+name: Thesis Supplementary Semantic Corpus
+
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: Mutation budget per app
+        required: true
+        default: '4'
+      seed:
+        description: Deterministic mutation selection seed
+        required: true
+        default: '12345'
+
+jobs:
+  thesis-semantic-supplement:
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_BROWSERS: chromium
+      BENCHMARK_CORPUS_ID: realworld-semantic-supplement
+      BENCHMARK_RETENTION: compact
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install app dependencies
+        run: npm run install:apps
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: RealWorld validation specs
+        run: npm run validate:realworld
+
+      - name: Supplementary semantic baseline corpus
+        run: |
+          APP_ID=angular-realworld-example-app npm run benchmark:semantic:baseline:app
+          APP_ID=realworld npm run benchmark:semantic:baseline:app
+          APP_ID=vue3-realworld-example-app npm run benchmark:semantic:baseline:app
+
+      - name: Prepare deterministic supplementary mutation set
+        run: |
+          npm run benchmark:semantic:prepare:app --appid=angular-realworld-example-app --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+          npm run benchmark:semantic:prepare:app --appid=realworld --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+          npm run benchmark:semantic:prepare:app --appid=vue3-realworld-example-app --budget=${{ inputs.budget }} --seed=${{ inputs.seed }}
+
+      - name: Supplementary semantic mutation corpus
+        run: |
+          APP_ID=angular-realworld-example-app npm run benchmark:semantic:mutate:app
+          APP_ID=realworld npm run benchmark:semantic:mutate:app
+          APP_ID=vue3-realworld-example-app npm run benchmark:semantic:mutate:app
+
+      - name: Validate supplementary benchmark results
+        run: |
+          npm run validate:results -- \
+            test-results/angular-realworld-example-app/realworld-semantic-supplement/benchmark-runs \
+            test-results/realworld/realworld-semantic-supplement/benchmark-runs \
+            test-results/vue3-realworld-example-app/realworld-semantic-supplement/benchmark-runs
+
+      - name: Aggregate supplementary reports
+        run: |
+          npm run benchmark:semantic:aggregate:combined
+          APP_ID=angular-realworld-example-app npm run benchmark:semantic:aggregate:app
+          APP_ID=realworld npm run benchmark:semantic:aggregate:app
+          APP_ID=vue3-realworld-example-app npm run benchmark:semantic:aggregate:app
+
+      - name: Upload supplementary artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-semantic-supplement-chromium-budget-${{ inputs.budget }}-seed-${{ inputs.seed }}
+          path: |
+            test-results/realworld-semantic-supplement
+            test-results/angular-realworld-example-app/realworld-semantic-supplement
+            test-results/realworld/realworld-semantic-supplement
+            test-results/vue3-realworld-example-app/realworld-semantic-supplement

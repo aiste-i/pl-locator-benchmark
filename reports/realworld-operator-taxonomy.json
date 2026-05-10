@@ -1,0 +1,582 @@
+[
+  {
+    "operator": "AttributeAdd",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Any non-oracle element; existing attributes remain mutable except for preserved data-testid values.",
+    "safetyGuard": "Attribute mutations preserve data-testid so oracle roots stay grounded.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AttributeDelete",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Any non-oracle element; existing attributes remain mutable except for preserved data-testid values.",
+    "safetyGuard": "Attribute mutations preserve data-testid so oracle roots stay grounded.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AttributeMutator",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Any non-oracle element; existing attributes remain mutable except for preserved data-testid values.",
+    "safetyGuard": "Attribute mutations preserve data-testid so oracle roots stay grounded.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AttributeReplace",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Any non-oracle element; existing attributes remain mutable except for preserved data-testid values.",
+    "safetyGuard": "Attribute mutations preserve data-testid so oracle roots stay grounded.",
+    "excludedReason": null
+  },
+  {
+    "operator": "StyleColor",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "visibility",
+    "thesisCategory": "visibility-interaction-state",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Visual operators avoid hiding or displacing actionable controls and keep mutated nodes visible/actionable.",
+    "excludedReason": null
+  },
+  {
+    "operator": "StylePosition",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "visibility",
+    "thesisCategory": "visibility-interaction-state",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Visual operators avoid hiding or displacing actionable controls and keep mutated nodes visible/actionable.",
+    "excludedReason": null
+  },
+  {
+    "operator": "StyleSize",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "visibility",
+    "thesisCategory": "visibility-interaction-state",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Visual operators avoid hiding or displacing actionable controls and keep mutated nodes visible/actionable.",
+    "excludedReason": null
+  },
+  {
+    "operator": "StyleVisibility",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "visibility",
+    "thesisCategory": "visibility-interaction-state",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Visual operators avoid hiding or displacing actionable controls and keep mutated nodes visible/actionable.",
+    "excludedReason": null
+  },
+  {
+    "operator": "TextDelete",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SplitTextNode",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "MergeAdjacentTextNodes",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "DecorativePrefixInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "DecorativeSuffixInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "TextInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "TextNodeMutator",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "TextReplace",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "content",
+    "thesisCategory": "content",
+    "domConditions": "Element with non-empty visible text content.",
+    "safetyGuard": "Targets remain present in the DOM; only textual content is changed.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SubtreeDelete",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "NeutralWrapperInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Visible, non-oracle descendants with a mutable parent container.",
+    "safetyGuard": "Uses neutral wrappers and preserves target visibility and clickability.",
+    "excludedReason": null
+  },
+  {
+    "operator": "NeutralWrapperRemove",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Neutral wrapper nodes with one element child and no oracle-facing attributes.",
+    "safetyGuard": "Only removes wrappers that behave like passive containers.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AncestorLift",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Targets nested under a neutral wrapper that can be safely removed one level upward.",
+    "safetyGuard": "Only lifts through neutral single-child wrappers so the task surface remains present.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AncestorSink",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Visible targets with a mutable parent where one extra neutral depth level can be inserted.",
+    "safetyGuard": "Wraps the target without deleting it or changing its semantics.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LookalikeSiblingInsertBeforeTarget",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Visible targets with a mutable parent container.",
+    "safetyGuard": "Inserts a hidden decoy sibling before the target while preserving the original target.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LookalikeCardInsertBeforeTarget",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Targets inside repeated cards or previews whose container can be cloned safely.",
+    "safetyGuard": "Cloned cards are hidden, de-oracled, and stripped of live navigation targets.",
+    "excludedReason": null
+  },
+  {
+    "operator": "MetadataChildrenShuffle",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Metadata containers with at least three child elements.",
+    "safetyGuard": "Reorders only low-risk metadata children and leaves the original action surface intact.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LinkTextWrapInSpan",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Link, button, or label targets with direct text nodes.",
+    "safetyGuard": "Wraps visible text in inline spans without changing rendered wording or accessible name.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LinkTextUnwrap",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Link, button, or label targets containing inline text-only span wrappers.",
+    "safetyGuard": "Removes redundant wrappers while preserving text and interaction.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SubtreeInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SubtreeMove",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SubtreeSwap",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ReverseChildrenOrder",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SwapAdjacentSiblings",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle, non-interactive node without interactive or form-critical descendants.",
+    "safetyGuard": "Structural operators skip oracle-rooted and interactive/form-critical regions to avoid breaking task completion.",
+    "excludedReason": null
+  },
+  {
+    "operator": "TagMutator",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Non-oracle text-level semantic tags with a defined replacement mapping (for example h1->h2 or p->div).",
+    "safetyGuard": "Only non-interactive semantic text tags are remapped so controls and oracle anchors remain intact.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ContainerNodeMutator",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Leaf container nodes whose tag is one of body/div/span/table/td/tr/ul/li and whose text is non-empty.",
+    "safetyGuard": "Only leaf container text is altered; descendants are not removed or hidden.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ActionableNodeMutator",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Anchor, input, or button elements with a mutable href/id/class/title surface.",
+    "safetyGuard": "Mutations stay on the actionable node itself rather than deleting or hiding required controls.",
+    "excludedReason": null
+  },
+  {
+    "operator": "NonTargetDuplicateControlInsert",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "structural",
+    "thesisCategory": "structural",
+    "domConditions": "Buttons and links with a mutable sibling insertion point.",
+    "safetyGuard": "Inserts a nearby alternate control while preserving the original target and flow.",
+    "excludedReason": null
+  },
+  {
+    "operator": "DuplicateContainerRoleWithoutTargetEquivalence",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Role-bearing or card-like containers with a mutable sibling insertion point.",
+    "safetyGuard": "Duplicates only the surrounding container shell, not the original task target identity.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ToggleCssClass",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "visibility",
+    "thesisCategory": "visibility-interaction-state",
+    "domConditions": "Elements with a classList that can be toggled between stable style classes.",
+    "safetyGuard": "Class toggles preserve node presence and are blocked for oracle-protected targets.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ChangeImageAlt",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "img elements with an alt attribute.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "RemoveImageAlt",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "img elements with an alt attribute.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ReplaceImageWithDiv",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "img elements that can be replaced with a non-semantic div.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ChangeButtonLabel",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "button elements with a visible or accessible label.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "MutateAccessibleNameText",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Visible non-protected text-bearing descendants that participate in a button, link, label, or heading accessible-name surface.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "MutatePlaceholderText",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Visible text-bearing input or textarea controls with a non-empty placeholder.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LabelMechanismRewrite",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Labeled form controls whose naming can be shifted to aria-labelledby without changing the final name.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "AccessibleNameSourceSwap",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Controls with a stable visible or aria-label name that can be moved between name sources.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "PlaceholderToLabelPromotion",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Placeholder-only text inputs or textareas without an explicit label.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "LabelToPlaceholderFallback",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Labeled inputs or textareas that remain usable with placeholder fallback.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "RemovePlaceholderText",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Visible text-bearing input or textarea controls with a non-empty placeholder.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "RemoveInputNames",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Named form controls whose name attributes can be removed.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ReplaceAnchorWithSpan",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Anchor elements that can be downgraded to non-link spans.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ReplaceHeadingWithP",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Heading elements h1-h6.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ReplaceThWithTd",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "th elements inside table header structures.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "DuplicateId",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Elements that already expose an id attribute.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "SemanticToDiv",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Semantic landmark or sectioning elements with a valid div replacement path.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ChangeAriaLabel",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Elements that already expose aria-label.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "ToggleAriaExpanded",
+    "implementationKind": "dom",
+    "benchmarkScope": "in-scope",
+    "runtimeCategory": "accessibility-semantic",
+    "thesisCategory": "accessibility-semantic",
+    "domConditions": "Elements with an aria-expanded state.",
+    "safetyGuard": "Operators stay within their targeted accessibility surface and do not mutate data-testid anchors.",
+    "excludedReason": null
+  },
+  {
+    "operator": "DistortMutator",
+    "implementationKind": "visual",
+    "benchmarkScope": "excluded-by-design",
+    "runtimeCategory": "visual",
+    "thesisCategory": "visual",
+    "domConditions": "Rendered visual nodes eligible for bitmap-style distortion or masking.",
+    "safetyGuard": "Excluded from the benchmark because they do not answer the DOM/accessibility robustness question directly.",
+    "excludedReason": "Visual-only distortions do not cleanly answer the thesis question about locator-family robustness under non-breaking DOM/accessibility change."
+  },
+  {
+    "operator": "MaskMutator",
+    "implementationKind": "visual",
+    "benchmarkScope": "excluded-by-design",
+    "runtimeCategory": "visual",
+    "thesisCategory": "visual",
+    "domConditions": "Rendered visual nodes eligible for bitmap-style distortion or masking.",
+    "safetyGuard": "Excluded from the benchmark because they do not answer the DOM/accessibility robustness question directly.",
+    "excludedReason": "Masking simulates visual regression rather than a DOM/accessibility mutation that can be interpreted at the locator-family level."
+  }
+]

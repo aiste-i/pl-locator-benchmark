@@ -1,0 +1,77 @@
+<div class="home-page" data-testid="home-page">
+  <div class="banner" *ifAuthenticated="false" data-testid="home-banner">
+    <div class="container">
+      <h1 class="logo-font" data-testid="home-logo"><img src="assets/conduit-logo.svg" alt="Conduit" class="banner-logo" data-testid="home-logo-img" /></h1>
+      <p data-testid="home-tagline">
+        This is the
+        <a href="https://github.com/realworld-apps/angular-realworld-example-app" data-testid="home-angular-link">Angular frontend</a> demo from the
+        <a href="https://github.com/realworld-apps/realworld" data-testid="home-realworld-link">Realworld</a> project.<br />
+        This demo is connected to a demo backend that enforces session isolation.
+      </p>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="feed-toggle" data-testid="feed-toggle">
+          <ul class="nav nav-pills outline-active" data-testid="feed-toggle-list">
+            <li class="nav-item" *ifAuthenticated="true" data-testid="feed-toggle-item-your">
+              <a
+                class="nav-link"
+                [ngClass]="{ active: listConfig().type === 'feed' }"
+                routerLink="/"
+                [queryParams]="{ feed: 'following' }"
+                data-testid="nav-link-your-feed"
+              >
+                Your Feed
+              </a>
+            </li>
+            <li class="nav-item" data-testid="feed-toggle-item-global">
+              <a
+                class="nav-link"
+                [ngClass]="{
+                  active: listConfig().type === 'all' && !listConfig().filters.tag,
+                }"
+                routerLink="/"
+                data-testid="nav-link-global-feed"
+              >
+                Global Feed
+              </a>
+            </li>
+            <li class="nav-item" [hidden]="!listConfig().filters.tag" data-testid="feed-toggle-item-tag">
+              <a class="nav-link active" data-testid="nav-link-tag-feed"> <i class="ion-pound"></i> {{ listConfig().filters.tag }} </a>
+            </li>
+          </ul>
+        </div>
+
+        <app-article-list
+          [limit]="2"
+          [config]="listConfig()"
+          [currentPage]="currentPage()"
+          [isFollowingFeed]="isFollowingFeed()"
+          (pageChange)="onPageChange($event)"
+          data-testid="article-list-component"
+        />
+      </div>
+
+      <div class="col-md-3" *rxLet="tags$; let tags">
+        <div class="sidebar" data-testid="home-sidebar">
+          <p data-testid="home-sidebar-title">Popular Tags</p>
+
+          <div class="tag-list" data-testid="home-tag-list">
+            @for (tag of tags; track tag) {
+              <a class="tag-default tag-pill" [routerLink]="['/tag', tag]" data-testid="home-tag-item">
+                {{ tag }}
+              </a>
+            }
+          </div>
+
+          <div [hidden]="tagsLoaded()" data-testid="home-tags-loading">Loading tags...</div>
+
+          <div [hidden]="!tagsLoaded() || tags.length > 0" data-testid="home-tags-empty">No tags are here... yet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

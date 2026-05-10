@@ -1,0 +1,100 @@
+{
+  "corpusId": "realworld-semantic-supplement",
+  "displayName": "RealWorld Semantic Supplement Corpus",
+  "corpusRole": "supplementary",
+  "entrySpec": "tests/realworld/benchmark-semantic-supplement.spec.ts",
+  "validationFiles": [
+    "tests/realworld/benchmark-semantic-supplement.spec.ts",
+    "tests/realworld/benchmark-semantic-supplement.scenarios.ts",
+    "tests/realworld/helpers/benchmark-active.ts"
+  ],
+  "interpretationBoundary": "Supplementary semantic-query coverage only; not pooled into the realworld-active thesis denominators.",
+  "scenarioCount": 4,
+  "scenarios": [
+    {
+      "scenarioId": "semantic.auth-email-label",
+      "displayName": "Fill sign-in email by accessible label",
+      "supportedApps": [
+        "vue3-realworld-example-app"
+      ],
+      "excludedApps": [
+        {
+          "appId": "angular-realworld-example-app",
+          "reason": "The Angular sign-in email field is placeholder-only and has no genuine label contract."
+        },
+        {
+          "appId": "realworld",
+          "reason": "The Svelte sign-in email field is placeholder-only and has no genuine label contract."
+        }
+      ],
+      "targetLogicalKeys": [
+        "auth.emailLabelInput"
+      ],
+      "intendedSemanticEntryPoint": "getByLabel",
+      "fallbackPolicy": "exclude-if-intended-query-unavailable",
+      "targetInteractionOrAssertion": "Vue exposes the sign-in email control with a stable aria-label, making getByLabel the natural user-facing contract.",
+      "semanticNaturalnessRationale": "Accessible labels are the user-facing contract for labeled form controls; Vue provides this via aria-label.",
+      "supplementaryOnlyRationale": "The main corpus naturally exercises sign-in through placeholder/role locators, so this scenario isolates label-based semantic behavior."
+    },
+    {
+      "scenarioId": "semantic.comment-placeholder",
+      "displayName": "Fill article comment by placeholder",
+      "supportedApps": [
+        "angular-realworld-example-app",
+        "realworld",
+        "vue3-realworld-example-app"
+      ],
+      "excludedApps": [],
+      "targetLogicalKeys": [
+        "comments.textarea"
+      ],
+      "intendedSemanticEntryPoint": "getByPlaceholder",
+      "fallbackPolicy": "exclude-if-intended-query-unavailable",
+      "targetInteractionOrAssertion": "The comment textarea is consistently exposed with the visible placeholder \"Write a comment...\" across the three apps.",
+      "semanticNaturalnessRationale": "The textarea lacks a stronger shared label contract, while the placeholder is stable, visible, and usable as a fallback contract.",
+      "supplementaryOnlyRationale": "The main corpus includes comment creation, but this scenario explicitly reports placeholder-query coverage as supplementary evidence."
+    },
+    {
+      "scenarioId": "semantic.article-title-text",
+      "displayName": "Assert article title by visible text",
+      "supportedApps": [
+        "angular-realworld-example-app",
+        "realworld",
+        "vue3-realworld-example-app"
+      ],
+      "excludedApps": [],
+      "targetLogicalKeys": [
+        "article.titleText"
+      ],
+      "intendedSemanticEntryPoint": "getByText",
+      "fallbackPolicy": "exclude-if-intended-query-unavailable",
+      "targetInteractionOrAssertion": "An API-provisioned article title is visible content whose text is the intended user-facing assertion contract.",
+      "semanticNaturalnessRationale": "The scenario asserts content whose visible string is the contract; getByText expresses that directly.",
+      "supplementaryOnlyRationale": "The primary title assertion uses the family-standard title locator; this supplementary case isolates text-query evidence."
+    },
+    {
+      "scenarioId": "semantic.profile-avatar-alt",
+      "displayName": "Assert profile avatar by alternative text",
+      "supportedApps": [
+        "realworld",
+        "vue3-realworld-example-app"
+      ],
+      "excludedApps": [
+        {
+          "appId": "angular-realworld-example-app",
+          "reason": "The Angular profile avatar image has no stable alt text, so getByAltText would be artificial."
+        }
+      ],
+      "targetLogicalKeys": [
+        "profile.avatarImage"
+      ],
+      "intendedSemanticEntryPoint": "getByAltText",
+      "fallbackPolicy": "exclude-if-intended-query-unavailable",
+      "targetInteractionOrAssertion": "Svelte and Vue expose profile avatars with alt text equal to the username, making getByAltText a natural image locator.",
+      "semanticNaturalnessRationale": "Alternative text is the user-facing contract for meaningful images and is present on the profile avatar in Svelte and Vue.",
+      "supplementaryOnlyRationale": "The active corpus does not benchmark image alternative-text queries, so this scenario adds bounded supplementary coverage."
+    }
+  ],
+  "exclusionPolicy": "Unsupported app/scenario pairs are reported and not executed; intended semantic strategies do not silently fall back to getByRole.",
+  "denominatorPolicy": "Supplementary semantic results are stored and aggregated separately from realworld-active and are not pooled into primary thesis denominators."
+}

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
+    "playwright.config.ts",
+    "playwright.unit.config.ts"
+  ],
+  "exclude": [
+    "apps/**",
+    "artifacts/**",
+    "node_modules/**",
+    "reports/**",
+    "test-results/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/reference/**",
+    "**/references/**"
+  ]
+}

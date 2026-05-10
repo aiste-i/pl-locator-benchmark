@@ -1,0 +1,10 @@
+appId,corpusId,family,baselineValidRuns,mutatedValidRuns,baselineCompletedScans,mutatedCompletedScans,baselineFailedScans,mutatedFailedScans,baselineSkippedScans,mutatedSkippedScans,baselineCompletedScanRate,mutatedCompletedScanRate
+angular-realworld-example-app,realworld-active,css,12,13,12,13,0,0,0,0,1.0000,1.0000
+angular-realworld-example-app,realworld-active,xpath,12,13,12,13,0,0,0,0,1.0000,1.0000
+angular-realworld-example-app,realworld-active,semantic-first,12,13,12,13,0,0,0,0,1.0000,1.0000
+realworld,realworld-active,css,12,10,12,10,0,0,0,0,1.0000,1.0000
+realworld,realworld-active,xpath,12,10,12,10,0,0,0,0,1.0000,1.0000
+realworld,realworld-active,semantic-first,12,10,12,10,0,0,0,0,1.0000,1.0000
+vue3-realworld-example-app,realworld-active,css,12,12,12,12,0,0,0,0,1.0000,1.0000
+vue3-realworld-example-app,realworld-active,xpath,12,12,12,12,0,0,0,0,1.0000,1.0000
+vue3-realworld-example-app,realworld-active,semantic-first,12,12,12,12,0,0,0,0,1.0000,1.0000

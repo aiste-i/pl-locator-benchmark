@@ -1,0 +1,69 @@
+<div class="profile-page" data-testid="profile-page">
+  @if (errors()) {
+    <div class="container" data-testid="profile-error-container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <app-list-errors [errors]="errors()" data-testid="profile-error-list" />
+        </div>
+      </div>
+    </div>
+  }
+  @if (profile(); as p) {
+    <div class="user-info" data-testid="profile-user-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-10 offset-md-1">
+            <img [src]="p.image | defaultImage" class="user-img" data-testid="profile-user-img" />
+            <h4 data-testid="profile-username">{{ p.username }}</h4>
+            <p data-testid="profile-bio">{{ p.bio ?? '' }}</p>
+            @if (!isUser()) {
+              <app-follow-button [profile]="p" (toggle)="onToggleFollowing($event)" />
+            }
+            @if (isUser()) {
+              <a [routerLink]="['/settings']" class="btn btn-sm btn-outline-secondary action-btn" data-testid="profile-edit-btn">
+                <i class="ion-gear-a"></i> Edit Profile Settings
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <div class="articles-toggle" data-testid="profile-tabs">
+            <ul class="nav nav-pills outline-active">
+              <li class="nav-item" data-testid="profile-tab-item-my-posts">
+                <a
+                  class="nav-link"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/profile', p.username]"
+                  data-testid="profile-tab-my-posts"
+                >
+                  My Posts
+                </a>
+              </li>
+              <li class="nav-item" data-testid="profile-tab-item-favorited-posts">
+                <a
+                  class="nav-link"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/profile', p.username, 'favorites']"
+                  data-testid="profile-tab-favorited-posts"
+                >
+                  Favorited Posts
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div data-testid="profile-article-list">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

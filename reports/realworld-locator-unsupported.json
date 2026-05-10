@@ -1,0 +1,401 @@
+[
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for article.body in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for article.body in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for article.body in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "oracle",
+    "supported": false,
+    "reason": "Missing oracle locator implementation for article.body in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for comments.card in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for comments.card in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "angular-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for comments.card in angular-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "article.body",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for article.body in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "article.body",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for article.body in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "article.body",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for article.body in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "article.body",
+    "family": "oracle",
+    "supported": false,
+    "reason": "Missing oracle locator implementation for article.body in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "comments.card",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for comments.card in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "comments.card",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for comments.card in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "realworld",
+    "logicalKey": "comments.card",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for comments.card in realworld.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for article.body in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for article.body in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for article.body in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "article.body",
+    "family": "oracle",
+    "supported": false,
+    "reason": "Missing oracle locator implementation for article.body in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "semantic-first",
+    "supported": false,
+    "reason": "Missing semantic-first locator implementation for comments.card in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "css",
+    "supported": false,
+    "reason": "Missing css locator implementation for comments.card in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  },
+  {
+    "app": "vue3-realworld-example-app",
+    "logicalKey": "comments.card",
+    "family": "xpath",
+    "supported": false,
+    "reason": "Missing xpath locator implementation for comments.card in vue3-realworld-example-app.",
+    "excludedFromAggregateComparison": false,
+    "aggregateComparisonEligible": false,
+    "activeInCorpus": false,
+    "activeScenarioIds": [],
+    "specHints": [
+      "tests/realworld/xss-security.spec.ts"
+    ],
+    "sourceKind": null,
+    "purity": null,
+    "semanticEntryPoint": null,
+    "isException": false,
+    "selector": null
+  }
+]

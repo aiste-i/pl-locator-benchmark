@@ -1,0 +1,78 @@
+<div class="settings-page" data-testid="settings-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center" data-testid="settings-title">Your Settings</h1>
+
+        <app-list-errors [errors]="errors()" data-testid="settings-error-list" />
+
+        <form [formGroup]="settingsForm" (ngSubmit)="submitForm()" data-testid="settings-form">
+          <fieldset [disabled]="isSubmitting()" data-testid="settings-fieldset">
+            <fieldset class="form-group" data-testid="settings-image-fieldset">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="URL of profile picture"
+                formControlName="image"
+                name="image"
+                data-testid="settings-image-input"
+              />
+            </fieldset>
+
+            <fieldset class="form-group" data-testid="settings-username-fieldset">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Username"
+                formControlName="username"
+                name="username"
+                data-testid="settings-username-input"
+              />
+            </fieldset>
+
+            <fieldset class="form-group" data-testid="settings-bio-fieldset">
+              <textarea
+                class="form-control form-control-lg"
+                rows="8"
+                placeholder="Short bio about you"
+                formControlName="bio"
+                name="bio"
+                data-testid="settings-bio-textarea"
+              >
+              </textarea>
+            </fieldset>
+
+            <fieldset class="form-group" data-testid="settings-email-fieldset">
+              <input
+                class="form-control form-control-lg"
+                type="email"
+                placeholder="Email"
+                formControlName="email"
+                name="email"
+                data-testid="settings-email-input"
+              />
+            </fieldset>
+
+            <fieldset class="form-group" data-testid="settings-password-fieldset">
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="New Password"
+                formControlName="password"
+                name="password"
+                data-testid="settings-password-input"
+              />
+            </fieldset>
+
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit" data-testid="settings-submit-button">Update Settings</button>
+          </fieldset>
+        </form>
+
+        <!-- Line break for logout button -->
+        <hr />
+
+        <button class="btn btn-outline-danger" (click)="logout()" data-testid="settings-logout-button">Or click here to logout.</button>
+      </div>
+    </div>
+  </div>
+</div>

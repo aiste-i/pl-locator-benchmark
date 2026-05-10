@@ -1,0 +1,457 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.local/schemas/benchmark-results.schema.json",
+  "title": "Locator Robustness Benchmark Results",
+  "description": "Versioned schema for benchmark run-level records and corpus-level result wrappers.",
+  "oneOf": [
+    { "$ref": "#/definitions/benchmarkResult" },
+    { "$ref": "#/definitions/resultCorpus" }
+  ],
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nullableString": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "null" }
+      ]
+    },
+    "nullableNumber": {
+      "anyOf": [
+        { "type": "number" },
+        { "type": "null" }
+      ]
+    },
+    "locatorFamily": {
+      "enum": ["semantic-first", "css", "xpath"]
+    },
+    "browserName": {
+      "enum": ["chromium", "firefox", "webkit"]
+    },
+    "phase": {
+      "enum": ["baseline", "mutated"]
+    },
+    "operatorCategory": {
+      "enum": ["none", "structural", "content", "accessibility-semantic", "visibility", "visibility-interaction-state"]
+    },
+    "runStatus": {
+      "enum": ["passed", "failed", "invalid"]
+    },
+    "failureClass": {
+      "anyOf": [
+        { "enum": ["NO_MATCH", "MULTIPLE_MATCH", "ACTIONABILITY", "ASSERTION"] },
+        { "type": "null" }
+      ]
+    },
+    "failureStage": {
+      "anyOf": [
+        { "enum": ["ORACLE_PRECHECK", "ACTION", "ASSERTION"] },
+        { "type": "null" }
+      ]
+    },
+    "instrumentationPathUsed": {
+      "enum": ["structured", "fallback", "mixed"]
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "platform", "release", "arch"],
+      "properties": {
+        "os": { "$ref": "#/definitions/nonEmptyString" },
+        "platform": { "$ref": "#/definitions/nonEmptyString" },
+        "release": { "$ref": "#/definitions/nonEmptyString" },
+        "arch": { "$ref": "#/definitions/nonEmptyString" }
+      }
+    },
+    "stabilization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempted", "status", "durationMs", "strategy"],
+      "properties": {
+        "attempted": { "type": "boolean" },
+        "status": { "enum": ["completed", "timeout-fallback", "skipped"] },
+        "durationMs": { "type": "number", "minimum": 0 },
+        "strategy": { "$ref": "#/definitions/nonEmptyString" }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scanAttempted",
+        "scanStatus",
+        "scanError",
+        "detailedArtifactWritten",
+        "artifactPath",
+        "totalViolations",
+        "violationIds",
+        "impactedNodeCount",
+        "criticalCount",
+        "seriousCount",
+        "moderateCount",
+        "minorCount",
+        "runId",
+        "applicationId",
+        "browserName",
+        "scenarioId",
+        "phase",
+        "stabilization"
+      ],
+      "properties": {
+        "scanAttempted": { "type": "boolean" },
+        "scanStatus": { "enum": ["completed", "failed", "skipped"] },
+        "scanTimestamp": { "$ref": "#/definitions/nullableString" },
+        "scanError": { "$ref": "#/definitions/nullableString" },
+        "detailedArtifactWritten": { "type": "boolean" },
+        "artifactPath": { "$ref": "#/definitions/nullableString" },
+        "totalViolations": { "type": "integer", "minimum": 0 },
+        "violationIds": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" }
+        },
+        "impactedNodeCount": { "type": "integer", "minimum": 0 },
+        "criticalCount": { "type": "integer", "minimum": 0 },
+        "seriousCount": { "type": "integer", "minimum": 0 },
+        "moderateCount": { "type": "integer", "minimum": 0 },
+        "minorCount": { "type": "integer", "minimum": 0 },
+        "runId": { "$ref": "#/definitions/nonEmptyString" },
+        "applicationId": { "$ref": "#/definitions/nonEmptyString" },
+        "browserName": { "$ref": "#/definitions/browserName" },
+        "scenarioId": { "$ref": "#/definitions/nonEmptyString" },
+        "phase": { "$ref": "#/definitions/phase" },
+        "stabilization": { "$ref": "#/definitions/stabilization" }
+      }
+    },
+    "mutation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mutationId",
+        "operatorId",
+        "operatorCategory",
+        "candidateId",
+        "seed",
+        "phase",
+        "selected",
+        "applied",
+        "skipped",
+        "skipReason"
+      ],
+      "properties": {
+        "mutationId": { "$ref": "#/definitions/nonEmptyString" },
+        "operatorId": { "$ref": "#/definitions/nonEmptyString" },
+        "operatorCategory": { "$ref": "#/definitions/operatorCategory" },
+        "candidateId": { "$ref": "#/definitions/nullableString" },
+        "seed": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "null" }
+          ]
+        },
+        "phase": { "$ref": "#/definitions/phase" },
+        "selected": { "type": "boolean" },
+        "applied": { "type": "boolean" },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "$ref": "#/definitions/nullableString" }
+      }
+    },
+    "mutationTelemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selectedCandidateId",
+        "selectedTargetSelector",
+        "selectedTargetTagType",
+        "operatorRuntimeCategory",
+        "operatorThesisCategory",
+        "operatorConsideredCandidateCount",
+        "operatorCandidateCount",
+        "operatorApplicableCount",
+        "operatorSkippedOracleCount",
+        "operatorNotApplicableCount",
+        "operatorSelectedCount",
+        "operatorSelectedApplicableRatio",
+        "operatorCheckDurationMs",
+        "applyDurationMs",
+        "applyFailureCount",
+        "finalMutationOutcomeClass"
+      ],
+      "properties": {
+        "selectedCandidateId": { "$ref": "#/definitions/nullableString" },
+        "selectedTargetSelector": { "$ref": "#/definitions/nullableString" },
+        "selectedTargetTagType": { "$ref": "#/definitions/nullableString" },
+        "operatorRuntimeCategory": { "$ref": "#/definitions/nullableString" },
+        "operatorThesisCategory": { "$ref": "#/definitions/nullableString" },
+        "operatorConsideredCandidateCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorCandidateCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorApplicableCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorSkippedOracleCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorNotApplicableCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorSelectedCount": { "$ref": "#/definitions/nullableNumber" },
+        "operatorSelectedApplicableRatio": { "$ref": "#/definitions/nullableNumber" },
+        "operatorCheckDurationMs": { "$ref": "#/definitions/nullableNumber" },
+        "applyDurationMs": { "$ref": "#/definitions/nullableNumber" },
+        "applyFailureCount": { "type": "integer", "minimum": 0 },
+        "finalMutationOutcomeClass": { "$ref": "#/definitions/nullableString" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actionContextEntered",
+        "preActionResolutionObservation",
+        "uniquenessViolationObserved",
+        "actionAttemptStarted",
+        "actionCompleted",
+        "assertionStageEntered",
+        "oracleVerificationStarted",
+        "oracleVerificationCompleted",
+        "actionabilityFailureObserved",
+        "timeoutObserved",
+        "infrastructureFailureObserved",
+        "oracleIntegrityFailureObserved"
+      ],
+      "properties": {
+        "actionContextEntered": { "type": "boolean" },
+        "preActionResolutionObservation": {
+          "anyOf": [
+            { "type": "integer", "minimum": 0 },
+            { "enum": ["unknown"] }
+          ]
+        },
+        "uniquenessViolationObserved": { "type": "boolean" },
+        "actionAttemptStarted": { "type": "boolean" },
+        "actionCompleted": { "type": "boolean" },
+        "assertionStageEntered": { "type": "boolean" },
+        "oracleVerificationStarted": { "type": "boolean" },
+        "oracleVerificationCompleted": { "type": "boolean" },
+        "actionabilityFailureObserved": { "type": "boolean" },
+        "timeoutObserved": { "type": "boolean" },
+        "infrastructureFailureObserved": { "type": "boolean" },
+        "oracleIntegrityFailureObserved": { "type": "boolean" }
+      }
+    },
+    "ci": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflowName", "runNumber", "runnerOs"],
+      "properties": {
+        "workflowName": { "$ref": "#/definitions/nullableString" },
+        "runNumber": { "$ref": "#/definitions/nullableString" },
+        "runnerOs": { "$ref": "#/definitions/nullableString" }
+      }
+    },
+    "runMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "datasetVersion",
+        "runId",
+        "generatedAt",
+        "commitSha",
+        "gitBranch",
+        "dirtyWorkingTree",
+        "nodeVersion",
+        "npmVersion",
+        "playwrightVersion",
+        "benchmarkPackageVersion",
+        "platform",
+        "browserSetUsed",
+        "browserChannel",
+        "benchmarkScope",
+        "corpusId",
+        "selectedScenarios",
+        "selectedApps",
+        "seed",
+        "mutationBudget",
+        "selectedMutationIds",
+        "totalCandidatesConsidered",
+        "executionMode",
+        "ci"
+      ],
+      "properties": {
+        "schemaVersion": { "$ref": "#/definitions/semver" },
+        "datasetVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "runId": { "$ref": "#/definitions/nonEmptyString" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "commitSha": { "$ref": "#/definitions/nonEmptyString" },
+        "gitBranch": { "$ref": "#/definitions/nullableString" },
+        "dirtyWorkingTree": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "null" }
+          ]
+        },
+        "nodeVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "npmVersion": { "$ref": "#/definitions/nullableString" },
+        "playwrightVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "benchmarkPackageVersion": { "$ref": "#/definitions/nullableString" },
+        "platform": { "$ref": "#/definitions/platform" },
+        "browserSetUsed": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/browserName" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "browserChannel": { "$ref": "#/definitions/nullableString" },
+        "benchmarkScope": { "$ref": "#/definitions/nullableString" },
+        "corpusId": { "$ref": "#/definitions/nullableString" },
+        "selectedScenarios": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" }
+        },
+        "selectedApps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" },
+          "minItems": 1
+        },
+        "seed": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "null" }
+          ]
+        },
+        "mutationBudget": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "null" }
+          ]
+        },
+        "selectedMutationIds": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" }
+        },
+        "totalCandidatesConsidered": { "$ref": "#/definitions/nullableNumber" },
+        "executionMode": { "enum": ["baseline", "mutate-sample", "mutate-full", "aggregate"] },
+        "ci": { "$ref": "#/definitions/ci" }
+      }
+    },
+    "benchmarkResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "datasetVersion",
+        "generatedAt",
+        "commitSha",
+        "applicationId",
+        "browserName",
+        "browserChannel",
+        "platform",
+        "nodeVersion",
+        "playwrightVersion",
+        "runId",
+        "scenarioId",
+        "locatorFamily",
+        "phase",
+        "mutation",
+        "durationMs",
+        "runStatus",
+        "failureClass",
+        "failureStage",
+        "oracleIntegrityOk",
+        "evidence",
+        "instrumentationPathUsed",
+        "comparisonEligible",
+        "accessibility"
+      ],
+      "properties": {
+        "schemaVersion": { "$ref": "#/definitions/semver" },
+        "datasetVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "commitSha": { "$ref": "#/definitions/nonEmptyString" },
+        "gitBranch": { "$ref": "#/definitions/nullableString" },
+        "dirtyWorkingTree": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "null" }
+          ]
+        },
+        "nodeVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "playwrightVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "benchmarkPackageVersion": { "$ref": "#/definitions/nullableString" },
+        "platform": { "$ref": "#/definitions/platform" },
+        "runId": { "$ref": "#/definitions/nonEmptyString" },
+        "applicationId": { "$ref": "#/definitions/nonEmptyString" },
+        "browserName": { "$ref": "#/definitions/browserName" },
+        "browserChannel": { "$ref": "#/definitions/nullableString" },
+        "corpusId": { "$ref": "#/definitions/nullableString" },
+        "corpusRole": {
+          "anyOf": [
+            { "enum": ["primary", "supplementary"] },
+            { "type": "null" }
+          ]
+        },
+        "scenarioId": { "$ref": "#/definitions/nonEmptyString" },
+        "activeScenarioId": { "$ref": "#/definitions/nullableString" },
+        "activeScenarioCategory": { "$ref": "#/definitions/nullableString" },
+        "sourceSpec": { "$ref": "#/definitions/nullableString" },
+        "intendedSemanticEntryPoint": { "$ref": "#/definitions/nullableString" },
+        "actualSemanticEntryPoint": { "$ref": "#/definitions/nullableString" },
+        "targetLogicalKeys": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" }
+        },
+        "semanticScenarioSupportedApps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/nonEmptyString" }
+        },
+        "semanticScenarioExclusionReason": { "$ref": "#/definitions/nullableString" },
+        "locatorFamily": { "$ref": "#/definitions/locatorFamily" },
+        "semanticEntryPoint": { "$ref": "#/definitions/nullableString" },
+        "phase": { "$ref": "#/definitions/phase" },
+        "mutation": { "$ref": "#/definitions/mutation" },
+        "changeId": { "$ref": "#/definitions/nullableString" },
+        "changeCategory": { "$ref": "#/definitions/nullableString" },
+        "changeOperator": { "$ref": "#/definitions/nullableString" },
+        "quotaBucket": { "$ref": "#/definitions/nullableString" },
+        "comparisonEligible": { "type": "boolean" },
+        "comparisonExclusionReason": { "$ref": "#/definitions/nullableString" },
+        "durationMs": { "type": "number", "minimum": 0 },
+        "runStatus": { "$ref": "#/definitions/runStatus" },
+        "failureClass": { "$ref": "#/definitions/failureClass" },
+        "failureStage": { "$ref": "#/definitions/failureStage" },
+        "rawErrorName": { "$ref": "#/definitions/nullableString" },
+        "rawErrorMessage": { "$ref": "#/definitions/nullableString" },
+        "classifierReason": { "$ref": "#/definitions/nullableString" },
+        "isTimeout": { "type": "boolean" },
+        "isStrictnessViolation": { "type": "boolean" },
+        "invalidRunReason": { "$ref": "#/definitions/nullableString" },
+        "oracleIntegrityOk": { "type": "boolean" },
+        "oracleIntegrityError": { "$ref": "#/definitions/nullableString" },
+        "evidence": { "$ref": "#/definitions/evidence" },
+        "instrumentationPathUsed": { "$ref": "#/definitions/instrumentationPathUsed" },
+        "accessibility": { "$ref": "#/definitions/accessibility" },
+        "mutationTelemetry": { "$ref": "#/definitions/mutationTelemetry" },
+        "tracePath": { "$ref": "#/definitions/nullableString" },
+        "screenshotPath": { "$ref": "#/definitions/nullableString" },
+        "axeArtifactPath": { "$ref": "#/definitions/nullableString" },
+        "ariaSnapshotPath": { "$ref": "#/definitions/nullableString" },
+        "metadataPath": { "$ref": "#/definitions/nullableString" }
+      }
+    },
+    "resultCorpus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "datasetVersion", "generatedAt", "metadata", "results"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/definitions/semver" },
+        "datasetVersion": { "$ref": "#/definitions/nonEmptyString" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "metadata": { "$ref": "#/definitions/runMetadata" },
+        "results": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/benchmarkResult" }
+        }
+      }
+    }
+  }
+}

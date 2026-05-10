@@ -1,0 +1,10 @@
+appId,corpusId,family,completedBaselineScans,completedMutatedScans,meanViolationsBaselineCompletedOnly,meanViolationsMutatedCompletedOnly,meanCriticalMutatedCompletedOnly,meanImpactedNodesMutatedCompletedOnly
+angular-realworld-example-app,realworld-active,css,12,13,6.58,6.08,1.00,46.31
+angular-realworld-example-app,realworld-active,xpath,12,13,6.58,6.08,1.00,46.31
+angular-realworld-example-app,realworld-active,semantic-first,12,13,6.50,6.08,1.00,46.31
+realworld,realworld-active,css,12,10,1.50,1.00,0.00,16.00
+realworld,realworld-active,xpath,12,10,1.50,1.00,0.00,16.00
+realworld,realworld-active,semantic-first,12,10,1.50,1.00,0.00,16.00
+vue3-realworld-example-app,realworld-active,css,12,12,3.58,3.08,0.00,34.33
+vue3-realworld-example-app,realworld-active,xpath,12,12,3.58,3.08,0.00,34.33
+vue3-realworld-example-app,realworld-active,semantic-first,12,12,3.58,3.08,0.00,34.33

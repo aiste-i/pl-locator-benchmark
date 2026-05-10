@@ -1,0 +1,153 @@
+<div class="article-page" data-testid="article-page">
+  @if (errors()) {
+    <div class="container" data-testid="article-error-container">
+      <div class="row">
+        <div class="col-md-12">
+          <app-list-errors [errors]="errors()" data-testid="article-error-list" />
+        </div>
+      </div>
+    </div>
+  }
+  @if (article(); as a) {
+    <div class="banner" data-testid="article-banner">
+      <div class="container">
+        <h1 data-testid="article-title">{{ a.title }}</h1>
+
+        <app-article-meta [article]="a" data-testid="article-meta-top">
+          @if (canModify()) {
+            <span>
+              <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/editor', a.slug]" data-testid="article-edit-btn">
+                <i class="ion-edit"></i> Edit Article
+              </a>
+
+              <button
+                class="btn btn-sm btn-outline-danger"
+                [ngClass]="{ disabled: isDeleting() }"
+                (click)="deleteArticle()"
+                data-testid="article-delete-btn"
+              >
+                <i class="ion-trash-a"></i> Delete Article
+              </button>
+            </span>
+          } @else {
+            <span>
+              <app-follow-button
+                [profile]="a.author"
+                (toggle)="toggleFollowing($event)"
+                followTestId="article-follow-btn"
+                unfollowTestId="article-unfollow-btn"
+              >
+              </app-follow-button>
+
+              <app-favorite-button
+                [article]="a"
+                (toggle)="onToggleFavorite($event)"
+                favoriteTestId="article-favorite-btn"
+                unfavoriteTestId="article-unfavorite-btn"
+              >
+                {{ a.favorited ? 'Unfavorite' : 'Favorite' }} Article
+                <span class="counter">({{ a.favoritesCount }})</span>
+              </app-favorite-button>
+            </span>
+          }
+        </app-article-meta>
+      </div>
+    </div>
+
+    <div class="container page">
+      <div class="row article-content" data-testid="article-content">
+        <div class="col-md-12">
+          <div [innerHTML]="a.body | markdown | async" data-testid="article-body"></div>
+
+          <ul class="tag-list" data-testid="article-tag-list">
+            @for (tag of a.tagList; track tag) {
+              <li class="tag-default tag-pill tag-outline" data-testid="article-tag-item">
+                {{ tag }}
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="article-actions" data-testid="article-actions">
+        <app-article-meta [article]="a" data-testid="article-meta-bottom">
+          @if (canModify()) {
+            <span>
+              <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/editor', a.slug]" data-testid="article-edit-btn-bottom">
+                <i class="ion-edit"></i> Edit Article
+              </a>
+
+              <button
+                class="btn btn-sm btn-outline-danger"
+                [ngClass]="{ disabled: isDeleting() }"
+                (click)="deleteArticle()"
+                data-testid="article-delete-btn-bottom"
+              >
+                <i class="ion-trash-a"></i> Delete Article
+              </button>
+            </span>
+          } @else {
+            <span>
+              <app-follow-button
+                [profile]="a.author"
+                (toggle)="toggleFollowing($event)"
+                followTestId="article-follow-btn-bottom"
+                unfollowTestId="article-unfollow-btn-bottom"
+              />
+
+              <app-favorite-button
+                [article]="a"
+                (toggle)="onToggleFavorite($event)"
+                favoriteTestId="article-favorite-btn-bottom"
+                unfavoriteTestId="article-unfavorite-btn-bottom"
+              >
+                {{ a.favorited ? 'Unfavorite' : 'Favorite' }} Article
+                <span class="counter">({{ a.favoritesCount }})</span>
+              </app-favorite-button>
+            </span>
+          }
+        </app-article-meta>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-2">
+          <div *ifAuthenticated="true" data-testid="comment-form-container">
+            <app-list-errors [errors]="commentFormErrors()" data-testid="comment-error-list" />
+            <form class="card comment-form" (ngSubmit)="addComment()" data-testid="comment-form">
+              <fieldset [disabled]="isSubmitting()">
+                <div class="card-block">
+                  <textarea
+                    class="form-control"
+                    placeholder="Write a comment..."
+                    rows="3"
+                    [formControl]="commentControl"
+                    data-testid="comment-textarea"
+                  ></textarea>
+                </div>
+                <div class="card-footer">
+                  <img [src]="currentUser()?.image | defaultImage" class="comment-author-img" data-testid="comment-author-img" />
+                  <button class="btn btn-sm btn-primary" type="submit" data-testid="comment-submit-button">Post Comment</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+          <div *ifAuthenticated="false" data-testid="comment-auth-message">
+            <a [routerLink]="['/login']" data-testid="comment-login-link">Sign in</a> or <a [routerLink]="['/register']" data-testid="comment-register-link">sign up</a> to add comments on
+            this article.
+          </div>
+
+          <app-list-errors [errors]="deleteCommentErrors()" data-testid="comment-delete-error-list" />
+
+          <div class="comment-list" data-testid="comment-list">
+            @for (comment of comments(); track comment) {
+              <app-article-comment [comment]="comment" (delete)="deleteComment(comment)" data-testid="comment-item" />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
